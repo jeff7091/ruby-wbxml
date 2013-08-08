@@ -1,0 +1,34 @@
+# -*- ruby -*-
+
+require "rubygems"
+require "hoe"
+require 'rake'
+require 'rake/extensiontask'
+
+# Hoe.plugin :compiler
+# Hoe.plugin :cucumberfeatures
+# Hoe.plugin :gem_prelude_sucks
+# Hoe.plugin :inline
+# Hoe.plugin :manifest
+# Hoe.plugin :newgem
+# Hoe.plugin :racc
+# Hoe.plugin :rcov
+# Hoe.plugin :rubyforge
+# Hoe.plugin :website
+
+Hoe.spec "wbxml2" do
+  developer("Jeff Enderwick", "jeff.enderwick@gmail.com")
+  self.readme_file   = 'README.txt'
+  self.history_file  = 'CHANGELOG.txt'
+  self.extra_rdoc_files  = FileList['*.rdoc']
+  self.extra_dev_deps << ['rake-compiler', '>= 0']
+  self.spec_extras = { :extensions => ["ext/wbxml2/extconf.rb"] }
+
+  Rake::ExtensionTask.new('wbxml2', spec) do |ext|
+    ext.lib_dir = File.join('lib', 'wbxml2')
+  end
+end
+
+Rake::Task[:test].prerequisites << :compile
+
+# vim: syntax=ruby

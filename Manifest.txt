@@ -1,0 +1,8 @@
+.autotest
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+bin/wbxml2
+lib/wbxml2.rb
+test/test_wbxml2.rb
